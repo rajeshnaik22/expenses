@@ -11,6 +11,13 @@
   </head>
 
   <body>
+    <%= render "shared/navigation"%>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <%= alert %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
     <%= yield %>
   </body>
 </html>
