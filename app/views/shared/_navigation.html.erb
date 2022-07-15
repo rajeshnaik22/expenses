@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">
     <img src="<%=image_url('logo.jpg') %>"  height="30" class="d-inline-block align-top" alt="">
@@ -34,11 +34,12 @@
               <%= current_user.email%>
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><%= link_to "Logout", destroy_user_session_path, method: :delete %> </li>  
+              <li><%= link_to "My Account", edit_user_registration_path, class: "dropdown-item"  %> </li>
+              <li><%= link_to "Logout", destroy_user_session_path, class: "dropdown-item", method: :delete %> </li>  
             </ul>
         <% else%>
-          <li class="nav-item"><%= link_to "Login", new_user_session_path %></li>
-          <li class="nav-item"><%= link_to "Register", new_user_registration_path %> </li>
+          <li class="nav-item"><%= link_to "Login", new_user_session_path, class:"nav-link"  %></li>
+          <li class="nav-item"><%= link_to "Register", new_user_registration_path, class: "nav-link" %> </li>
         <% end %>
        </ul>
     </div>
