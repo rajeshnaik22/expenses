@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'users/index'
+
+
   devise_for :users
-  root "test#welcome"
+  resources :photos
+  resources :users
+   
+  root "photos#welcome"
 end
