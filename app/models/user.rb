@@ -7,8 +7,11 @@ class User < ApplicationRecord
 
   has_paper_trail
 
+  ransacker :id do
+    Arel.sql("to_char(\"#{table_name}\".\"id\", '99999999')")
+  end
 
-
+  scope :with_roles, ->{includes(:roles)}
 
 
 end
