@@ -13,6 +13,10 @@ class ApplicationController < ActionController::Base
           format.html { redirect_to :root }
           format.json { render json: {redirect: root_path}, status: 403 }
         end
-      end
+    end
+
+    def add_initial_breadcrumbs
+       breadcrumbs.add "Home", root_path
+    end
 
     end

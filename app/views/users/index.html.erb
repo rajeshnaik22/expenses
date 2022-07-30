@@ -1,14 +1,27 @@
 <div class="container">
     <h1>Users</h1>
     <%= search_form_for @q do |f| %>
-        <%= f.search_field :email_or_id_cont, placeholder: "Id or email.." %>
-        <%= f.search_field :roles_name_cont, placeholder: "Role.." %>
-        <%= f.submit %>
+    <div class="row g-3 align-items-center">
+    <div class="col-auto">
+        <%= f.search_field :email_or_id_cont, placeholder: "Id or email..", class: "form-control" %>
+    </div>
+    <div class="col-auto">
+        <%= f.search_field :roles_name_cont, placeholder: "Role..", class: "form-control" %>
+    </div>
+    <div class="col-auto">
+       <%= f.submit class: "btn btn-primary"%>
+    </div>
+    </div>
     <% end %>
+    
+        
+        
+        
+  
 
 
 
-    <table class="table">
+    <table class="table table-hover">
         <thead>
             <tr>
             <th scope="col">Id</th>
@@ -26,9 +39,12 @@
                 <span class="badge rounded-pill bg-secondary"><%=role%></span>
                 <% end%>
             </td>
+
             </tr>
         <% end %>
         </tbody>
     </table>
+    <div class="pagination-wrapper">
     <%= paginate @users %>
+    </div>
 </div>

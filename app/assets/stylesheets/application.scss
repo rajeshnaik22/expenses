@@ -1,0 +1,107 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+ @import "bootstrap/scss/bootstrap.scss";
+ 
+body{
+    padding-top: 60px;
+}
+
+ .notification-alert{
+    position: absolute;
+    top: 20px; 
+    margin: auto; 
+    margin-right: auto;
+    z-index: 9999;
+    width: 50%;
+    left: 0;
+    right: 0;
+    
+ }
+
+ /* Kaminari pagination*/
+ .pagination a, .pagination span.gap {
+    float: left;
+    padding: 0 14px;
+    line-height: 38px;
+    text-decoration: none;
+    background-color: white;
+    border: 1px solid #DDD;
+    border-left-width: 0;
+    
+   
+}
+
+.pagination-wrapper{
+    width: 600px; /* or whatever width you require */
+    margin: 10px auto; 
+}
+
+.pagination {
+    border-left: 1px solid #ddd;
+    .first{
+        padding : 0;
+        float: none;
+        border: none;
+    }
+    .prev {
+        padding : 0;
+        float: none;
+        border: none;
+    }
+    .page{
+        padding : 0;
+        float: none;
+        border: none;
+    }
+    .current{
+        padding : 0  14px;
+        float: none;
+        border: none;
+        background-color: rgb(81, 107, 180);
+        color: white;
+        line-height: 38px;
+        border: 1px solid #DDD;
+    }
+    .next{
+        padding : 0;
+        float: none;
+        border: none;
+    }
+    .last{
+        padding : 0;
+        float: none;
+        border: none;
+    }
+}
+
+.breadcrumb-container{
+  $font-size: 14px;
+  $height: 40px;
+  $background-color: #eee;;
+
+  border-radius: 3px !important;
+  display: flex;
+  font-size: $font-size;
+  margin: 20px 0px;
+  overflow: hidden;
+  background-color: $background-color;
+  line-height: $height;
+
+  a,span {
+    margin-left: 5px
+  }
+}

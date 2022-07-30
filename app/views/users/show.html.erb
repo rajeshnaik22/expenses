@@ -1,0 +1,11 @@
+<div class="container user-show-page">
+
+    <h2 class="text-center"><%=@user.email%></h2>
+
+    
+    <%= simple_form_for @user,  method: :patch do |f| %>
+    <%= f.association :roles, wrapper: :vertical_collection_inline, as: :check_boxes %>
+    <%= f.submit class: "btn btn-primary" %>
+    <% end %>
+</div>
+
