@@ -10,7 +10,6 @@ class UsersController < ApplicationController
 
   def show
     breadcrumbs << @user.email
-    Resque.enqueue TestWorker, 1
   end
 
   def update
