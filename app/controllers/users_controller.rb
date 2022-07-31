@@ -10,13 +10,14 @@ class UsersController < ApplicationController
 
   def show
     breadcrumbs << @user.email
+    Resque.enqueue(TestWorker, 1)
   end
 
   def update
     respond_to do |format|
       puts @user
       if @user.update(user_params)
-        format.html { redirect_to user_url(@user), notice: "Post was successfully updated." }
+        format.html { redirect_to user_url(@user), notice: "User was successfully updated." }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :show, status: :unprocessable_entity }
