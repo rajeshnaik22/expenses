@@ -18,5 +18,8 @@ module Todo
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    config.filestack_rails.api_key = ENV["FS"]
+    config.filestack_rails.client_name = 'expenses'
   end
 end

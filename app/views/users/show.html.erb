@@ -1,11 +1,24 @@
 <div class="container user-show-page">
-
-    <h2 class="text-center"><%=@user.email%></h2>
-
+    
     
     <%= simple_form_for @user,  method: :patch do |f| %>
-    <%= f.association :roles, wrapper: :vertical_collection_inline, as: :check_boxes %>
-    <%= f.submit class: "btn btn-primary" %>
+        <div class="text-center">
+            <h2><%=@user.email%></h2>
+            <% if @user.picture%>
+                <%= filestack_image (@user.picture), transform: filestack_transform.resize(width: 200, height: 200), class: "img-thumbnail" %></br>
+                <% picture_button_text = "Change"  %>
+            <% end %>
+            <%= f.filestack_field :picture,  picture_button_text || 'Upload Your Avatar' , class: "btn btn-sm btn-light", onChange: :callbackForButton%>
+        </div>
+        <%= f.association :roles, wrapper: :vertical_collection_inline, as: :check_boxes %>
+        <%= f.submit class: "btn btn-primary" %>
+    
     <% end %>
 </div>
+<script>
+function callbackForButton(name) {
+    alert('I am ' + name + '. Hear me roar!');
+    console.log(name);
+  }
+</script>
 

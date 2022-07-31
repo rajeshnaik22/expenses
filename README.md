@@ -5,7 +5,9 @@
 
 * Ruby version 2.7.3, Rails 6.1.6
 
-* System dependencies
+* Todo
+    Show changed image on change image operation
+    Use background worker to create image thumbnails
 
 * Configuration
 
