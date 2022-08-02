@@ -21,5 +21,8 @@ module Todo
 
     config.filestack_rails.api_key = ENV["FS"]
     config.filestack_rails.client_name = 'expenses'
+    config.eager_load_paths << Rails.root.join('lib/filestack')
+    #config.autoload_paths << Rails.root.join('lib')
+
   end
 end
