@@ -1,7 +1,7 @@
 module Filestack
     class API
         extend Memoist
-        FS_KEY= ENV["FS"]
+        FS_KEY= ["FS"]ENV
         def upload_file(path)
             flink = client.upload filepath: path
 
