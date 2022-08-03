@@ -5,7 +5,7 @@ class CreateThumbnailWorker < ApplicationWorker
     @queue = :thumbnails_queue
     def perform id
         @id=id
-        puts "Running CreateThumbnailWorker worker with #{@id}"
+        puts "Running CreateThumbnailWorker worker with id: #{@id}"
         return unless valid_picture?
         download_source_image
         create_thumbnail
@@ -20,12 +20,13 @@ class CreateThumbnailWorker < ApplicationWorker
     end
 
     def download_source_image
+        puts "download_source_image"
         image_url = user.picture
         IO.copy_stream(URI.open(image_url), tempfile)
     end
 
     memoize def tempfile
-        "tmp/#{user.id}-thumbnaiil.jpg"
+        "tmp/#{user.id}-thumbnail.jpg"
     end
 
     memoize def resized_file
@@ -42,6 +43,7 @@ class CreateThumbnailWorker < ApplicationWorker
     end
 
     def create_thumbnail
+        puts "create_thumbnail"
         Media::trim(tempfile, resized_file, height: 200)
     end
 end

@@ -1,9 +1,8 @@
 class Media 
     class << self
-        def trim(source_path, destination_path, width: :auto, height: :auto)
-            image = Rszr::Image.load(source_path)
-            image.resize!(width, height)
-            image.save destination_path
+        def trim(source_path, destination_path, width: -1, height: -1)
+            puts "ffmpeg -i #{source_path} -vf scale=#{width}:#{height} #{destination_path}"
+            `ffmpeg -i #{source_path} -vf scale=#{width}:#{height} #{destination_path}`
         end
     end
 
