@@ -5,7 +5,7 @@
         <div class="text-center">
             <h2><%=@user.email%></h2>
             <% if @user.picture%>
-                <%= filestack_image (@user.picture), transform: filestack_transform.resize(width: 200, height: 200), class: "img-thumbnail" %></br>
+                <%= filestack_image (@user.thumbnail ||  @user.picture),  class: "img-thumbnail" %></br>
                 <% picture_button_text = "Change"  %>
             <% end %>
             <%= f.filestack_field :picture,  picture_button_text || 'Upload Your Avatar' , class: "btn btn-sm btn-light", onChange: :callbackForButton%>

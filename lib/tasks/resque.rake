@@ -6,3 +6,7 @@ task "resque:setup" => :environment do
     uri = URI.parse(ENV["REDISTOGO_URL"])
     Resque.redis = Redis.new(:host => uri.host, :port => uri.port, :password => uri.password)
 end
+
+task "resque:work" => :environment do
+    ENV["DISABLE_SPRING"]=true
+end

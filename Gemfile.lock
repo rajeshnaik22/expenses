@@ -249,6 +249,7 @@ GEM
       rspec-mocks (~> 3.10)
       rspec-support (~> 3.10)
     rspec-support (3.11.0)
+    rszr (1.2.1)
     ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
     sass-rails (6.0.0)
@@ -342,6 +343,7 @@ DEPENDENCIES
   ransack
   resque
   rspec-rails (~> 4.1.0)
+  rszr
   sass-rails (>= 6)
   selenium-webdriver (>= 4.0.0.rc1)
   simple_form
