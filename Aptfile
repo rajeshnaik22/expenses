@@ -1,2 +1,5 @@
-libimlib2
-libimlib2-dev
+# File used by Heroku to install apt packages for the app
+# write each pacakge on itw own line
+
+# libimlib2
+# libimlib2-dev

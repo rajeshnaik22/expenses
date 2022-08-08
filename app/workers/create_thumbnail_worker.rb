@@ -7,8 +7,11 @@ class CreateThumbnailWorker < ApplicationWorker
         @id=id
         puts "Running CreateThumbnailWorker worker with id: #{@id}"
         return unless valid_picture?
+        puts "a1"
         download_source_image
+        puts "a2"
         create_thumbnail
+        puts "a3"
         flink= Filestack::API.new.upload_file(resized_file)
         update_user flink
     end
@@ -20,8 +23,9 @@ class CreateThumbnailWorker < ApplicationWorker
     end
 
     def download_source_image
-        puts "download_source_image"
         image_url = user.picture
+        puts "download_source_image #{image_url}"
+
         IO.copy_stream(URI.open(image_url), tempfile)
     end
 
@@ -40,6 +44,7 @@ class CreateThumbnailWorker < ApplicationWorker
     def update_user flink
         puts "Updating user thumbnail with #{flink.url}"
         user.update! thumbnail: flink.url
+        puts "user updated with #{flink.url}"
     end
 
     def create_thumbnail
