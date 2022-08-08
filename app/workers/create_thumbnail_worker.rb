@@ -1,54 +1,58 @@
+# frozen_string_literal: true
+
 require 'open-uri'
 
+# Worker to create thumbnails for user picture
 class CreateThumbnailWorker < ApplicationWorker
-    extend Memoist
-    @queue = :thumbnails_queue
-    def perform id
-        @id=id
-        puts "Running CreateThumbnailWorker worker with id: #{@id}"
-        return unless valid_picture?
-        puts "a1"
-        download_source_image
-        puts "a2"
-        create_thumbnail
-        puts "a3"
-        flink= Filestack::API.new.upload_file(resized_file)
-        update_user flink
-    end
+  extend Memoist
+  @queue = :thumbnails_queue
+  def perform(id)
+    logger.info("Running CreateThumbnailWorker with #{id}")
+    @id = id
+    return unless valid_picture?
 
-    private
+    download_source_image
+    create_thumbnail
+    flink = Filestack::API.new.upload_file(resized_file)
+    update_user flink
+  end
 
-    memoize def user
-        User.find @id
-    end
+  private
 
-    def download_source_image
-        image_url = user.picture
-        puts "download_source_image #{image_url}"
+  def logger
+    Rails.logger
+  end
 
-        IO.copy_stream(URI.open(image_url), tempfile)
-    end
+  memoize def user
+    User.find @id
+  end
 
-    memoize def tempfile
-        "tmp/#{user.id}-thumbnail.jpg"
-    end
+  def download_source_image
+    image_url = user.picture
+    puts "download_source_image #{image_url}"
+    IO.copy_stream(URI.open(image_url), tempfile)
+  end
 
-    memoize def resized_file
-        "tmp/#{user.id}-resized.jpg"
-    end
+  memoize def tempfile
+    "tmp/#{user.id}-thumbnail.jpg"
+  end
 
-    def valid_picture?
-        user.picture.present?  
-    end
+  memoize def resized_file
+    "tmp/#{user.id}-resized.jpg"
+  end
 
-    def update_user flink
-        puts "Updating user thumbnail with #{flink.url}"
-        user.update! thumbnail: flink.url
-        puts "user updated with #{flink.url}"
-    end
+  def valid_picture?
+    user.picture.present?
+  end
 
-    def create_thumbnail
-        puts "create_thumbnail"
-        Media::trim(tempfile, resized_file, height: 200)
-    end
+  def update_user(flink)
+    puts "Updating user thumbnail with #{flink.url}"
+    user.update! thumbnail: flink.url
+    puts "user updated with #{flink.url}"
+  end
+
+  def create_thumbnail
+    puts 'create_thumbnail'
+    Media.trim(tempfile, resized_file, height: 200)
+  end
 end

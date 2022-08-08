@@ -74,3 +74,5 @@ gem 'filestack-rails'
 gem 'memoist'
 gem 'fastimage'
 
+gem 'rubocop-rails', require: false
+gem 'rubocop-rspec'

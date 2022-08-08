@@ -24,7 +24,9 @@ module Todo
     config.eager_load_paths << Rails.root.join('lib/filestack')
     #config.autoload_paths << Rails.root.join('lib')
 
-    config.logger = ::Logger.new(STDOUT) 
+    logger           = ActiveSupport::Logger.new(STDOUT)
+    logger.formatter = config.log_formatter
+    config.logger = ActiveSupport::TaggedLogging.new(logger)
 
   end
 end
