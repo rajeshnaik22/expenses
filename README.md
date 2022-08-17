@@ -7,7 +7,7 @@
 
 * Todo
     Show changed image on change image operation
-    Use background worker to create image thumbnails
+    Add paranoid Usr
 
 * Configuration
 

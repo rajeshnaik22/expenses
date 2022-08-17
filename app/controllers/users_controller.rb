@@ -34,7 +34,7 @@ class UsersController < ApplicationController
 
   def set_breadcrumbs
     add_initial_breadcrumbs
-    breadcrumbs.add "Users", users_path, class: "users-class"
+    breadcrumbs.add "Users", users_path, class: "breadcrumb-item"
   end
 
   def user_params

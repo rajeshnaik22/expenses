@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 require 'open-uri'
 
 RSpec.describe CreateThumbnailWorker do
-  subject { instance.perform user.id }
+  subject(:perform) { instance.perform user.id }
 
   let(:instance) { described_class.new }
   let(:user) { create :user, **user_attr }
@@ -14,14 +16,14 @@ RSpec.describe CreateThumbnailWorker do
 
       it 'does not create thumbnail' do
         expect(instance).not_to receive(:download_source_image)
-        subject
+        perform
       end
     end
 
     context 'when picture set' do
       before do
         puts 'running allow'
-        allow(IO).to receive(:popen)
+        allow(URI).to receive(:parse).and_return(double(open: 'some stream'))
         allow(IO).to receive(:copy_stream).and_return('Source file')
         allow(Media).to receive(:trim)
         allow(Filestack::API).to receive(:new).and_return(double('api', upload_file: OpenStruct.new(url: 'http://asdf.com')))
@@ -31,16 +33,16 @@ RSpec.describe CreateThumbnailWorker do
 
       it 'downloads image' do
         expect(instance).to receive(:download_source_image)
-        subject
+        perform
       end
 
       it 'creates thumbnail' do
-        expect(Media).to receive(:trim)
-        subject
+        perform
+        expect(Media).to have_received(:trim)
       end
 
       it 'updates user with thumbnail url' do
-        subject # reload is must else checks with old data
+        perform # reload is must else checks with old data
         expect(user.reload.thumbnail).to be_present
       end
     end

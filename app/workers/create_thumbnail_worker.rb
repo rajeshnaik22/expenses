@@ -30,7 +30,8 @@ class CreateThumbnailWorker < ApplicationWorker
   def download_source_image
     image_url = user.picture
     puts "download_source_image #{image_url}"
-    IO.copy_stream(URI.open(image_url), tempfile)
+    uri = URI.parse image_url
+    IO.copy_stream(uri.open, tempfile)
   end
 
   memoize def tempfile
