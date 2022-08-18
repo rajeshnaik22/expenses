@@ -100,3 +100,16 @@ body{
 .breadcrumb{
     
 }
+
+
+
+$columns: 10;
+@for $i from 1 through $columns {
+    .mb-#{$i}0-px { margin-bottom: #{$i*10}px; }
+    .mt-#{$i}0-px { margin-top: #{$i*10}px; }
+
+}
+
+.simple_form  .form-group, .form-actions {
+    margin-bottom: 30px;
+}
