@@ -7,7 +7,7 @@
 
 * Todo
     Show changed image on change image operation
-    Add paranoid Usr
+    
 
 * Configuration
 
