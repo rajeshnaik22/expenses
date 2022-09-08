@@ -9,6 +9,4 @@ class PhotosController < ApplicationController
     
   end
 
-  def welcome
-  end
 end

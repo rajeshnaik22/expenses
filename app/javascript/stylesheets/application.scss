@@ -20,6 +20,13 @@ body{
     
  }
 
+.table-records{
+    a {
+        text-decoration: none;
+    }
+}
+
+
  /* Kaminari pagination*/
  .pagination a, .pagination span.gap {
     float: left;

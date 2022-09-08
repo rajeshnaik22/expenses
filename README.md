@@ -17,8 +17,7 @@
 
 * RSpec for unit testing.
 
-* Services (job queues, cache servers, search engines, etc.)
+* Many to Many
+    Check User and Roles 
 
-* Deployment instructions
 
-* ...
