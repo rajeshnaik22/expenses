@@ -7,6 +7,10 @@
 
 * Todo
     Show changed image on change image operation
+
+* Gems to add
+  friendlyid, 
+  wicket for multipage forms
     
 
 * Configuration
