@@ -14,6 +14,8 @@
     
 
 * Configuration
+  Environment variables need to be defined
+    REDISTOGO_URL=redis://localhost:6379 usually in development mode
 
 * Postgress databse
 
