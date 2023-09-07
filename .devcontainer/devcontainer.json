@@ -1,5 +1,15 @@
 {
-  "image": "mcr.microsoft.com/devcontainers/universal:2",
-  "features": {
-  }
+  "name": "Ruby 2.7.3 Development",
+
+  "dockerFile": "Dockerfile",
+
+  "extensions": [
+    "ruby"
+  ],
+
+  "settings": {
+    "ruby.version": "2.7.3"
+  },
+
+  "postCreateCommand": "bundle install && yarn install"
 }
