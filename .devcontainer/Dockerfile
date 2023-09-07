@@ -2,9 +2,8 @@
 FROM ruby:2.7.3
 
 # Install any additional dependencies you need for your project
-RUN apt-get update && \
-    apt-get install -y \
-    # Add your dependencies here
+RUN apt-get update 
+# Add your dependencies here
 
 # Set the working directory in the container
 WORKDIR /app
